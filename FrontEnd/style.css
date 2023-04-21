@@ -141,3 +141,34 @@ header {
     text-align: center;
     background-color: #3b5998;
 }
+
+
+/* ///////////*/
+
+  
+  .chat-field {
+	list-style-type: none;
+	margin: 0;
+	padding: 10px;
+  }
+    
+  .message img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 5px;
+  }
+  
+  .square {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 5px;
+  }
+  
+  .square.self {
+	background-color: lightblue;
+  }
+  
+  .square.other {
+	background-color: White;
+  }
