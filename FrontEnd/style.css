@@ -1,0 +1,143 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	background-color: #3b5998;
+	color: white;
+	padding: 20px;
+	text-align: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+}
+
+/* ----------- Profile Header ----------- */
+.chat-header {
+	background-color: #3b5998;
+	color: white;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.chat-header img {
+	border-radius: 50%;
+	margin-right: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+/* ----------- Chat List ----------- */
+.chat-list {
+	flex: 1;
+    width: 400px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.chat-list li {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.chat-list img {
+	border-radius: 50%;
+	margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.chat-list p {
+	margin-left: 10px;
+	color: grey;
+	font-size: 1rem;
+}
+
+.chat-list ul li.active p {
+    color: #1a1aff;
+    font-weight: bold;
+}
+
+.chat-list ul li p {
+    font-size: 14px;
+}
+
+.chat-list ul li .time {
+    font-size: 12px;
+}
+
+.chat-list ul li {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ///////////////////////////// */
+.chat-window {
+	flex: 3;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-body {
+	flex: 1;
+	background-color: #f2f2f2;
+	padding: 20px;
+	overflow-y: scroll;
+}
+
+.chat-body ul {
+	list-style: none;
+}
+
+.chat-body li {
+	margin-bottom: 10px;
+}
+
+.sent {
+	text-align: right;
+}
+
+.received {
+	text-align: left;
+}
+
+.chat-footer {
+	display: flex;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.chat-footer input[type="text"] {
+	flex: 1;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+}
+
+.chat-footer button {
+	background-color: #3b5998;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	font-size: 16px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+#footer {
+    padding: 20px 7% 10%;
+    text-align: center;
+    background-color: #3b5998;
+}
