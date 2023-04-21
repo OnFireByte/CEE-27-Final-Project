@@ -19,7 +19,7 @@ const messageList = [
     {
         userId: "2",
         fname: "Byte",
-        imageProfile: "https://via.placeholder.com/50",
+        imageProfile: "https://mpics.mgronline.com/pics/Images/565000005465502.JPEG",
         message: "What?",
         imageMessage: null,
         time: "10:31 AM",
@@ -28,7 +28,7 @@ const messageList = [
     {
         userId: "3",
         fname: "Oak",
-        imageProfile: "https://via.placeholder.com/50",
+        imageProfile: "https://www.infoquest.co.th/wp-content/uploads/2023/04/DB741F1632A8EF3F68BD431640A4B813.jpg",
         message: "Vestibulum in ligula id dolor dictum elementum a quis lacus. Nunc et odio risus. Proin a tincidunt felis, at vehicula nunc.",
         imageMessage: null,
         time: "10:35 AM",

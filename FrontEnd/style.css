@@ -17,7 +17,6 @@ header {
 	height: 100vh;
 }
 
-
 /* ----------- Profile Header ----------- */
 .chat-header {
 	background-color: #3b5998;
@@ -38,8 +37,9 @@ header {
 .chat-list {
 	flex: 1;
 	width: 400px;
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	padding: 20px;
+	overflow-y: scroll;
 }
 
 .chat-list li {
@@ -90,13 +90,14 @@ header {
 	flex: 3;
 	display: flex;
 	flex-direction: column;
+	background-color: #f2f2f2;
+	overflow-y: scroll;
 }
 
 .chat-body {
 	flex: 1;
 	background-color: #f2f2f2;
 	padding: 20px;
-	/* overflow-y: scroll; */
 	height: 70px;
 }
 
@@ -149,6 +150,7 @@ header {
 	display: flex;
 	background-color: #f2f2f2;
 	padding: 20px;
+	right: 0;
 }
 
 .chat-footer input[type="text"] {
