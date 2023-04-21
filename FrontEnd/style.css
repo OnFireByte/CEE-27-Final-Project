@@ -17,6 +17,7 @@ header {
 	height: 100vh;
 }
 
+
 /* ----------- Profile Header ----------- */
 .chat-header {
 	background-color: #3b5998;
@@ -29,14 +30,14 @@ header {
 .chat-header img {
 	border-radius: 50%;
 	margin-right: 10px;
-    width: 80px;
-    height: 80px;
+	width: 80px;
+	height: 80px;
 }
 
 /* ----------- Chat List ----------- */
 .chat-list {
 	flex: 1;
-    width: 400px;
+	width: 400px;
 	background-color: #f2f2f2;
 	padding: 20px;
 }
@@ -50,8 +51,8 @@ header {
 .chat-list img {
 	border-radius: 50%;
 	margin-right: 10px;
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 }
 
 .chat-list p {
@@ -61,29 +62,30 @@ header {
 }
 
 .chat-list ul li.active p {
-    color: #1a1aff;
-    font-weight: bold;
+	color: #1a1aff;
+	font-weight: bold;
 }
 
 .chat-list ul li p {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .chat-list ul li .time {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .chat-list ul li {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-/* ///////////////////////////// */
+
+/* ----------- Chat Body ----------- */
 .chat-window {
 	flex: 3;
 	display: flex;
@@ -94,7 +96,8 @@ header {
 	flex: 1;
 	background-color: #f2f2f2;
 	padding: 20px;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
+	height: 70px;
 }
 
 .chat-body ul {
@@ -103,6 +106,35 @@ header {
 
 .chat-body li {
 	margin-bottom: 10px;
+}
+
+.chat-field {
+	list-style-type: none;
+	margin: 0;
+	padding: 10px;
+}
+
+.message img {
+	max-width: 100%;
+	border-radius: 50%;
+	margin-right: 10px;
+	width: 50px;
+	height: 50px;
+}
+
+.square {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 5px;
+}
+  
+.square.self {
+	background-color: lightblue;
+}
+  
+.square.other {
+	background-color: White;
 }
 
 .sent {
@@ -136,39 +168,10 @@ header {
 	cursor: pointer;
 }
 
+
+/* ----------- Footer ----------- */
 #footer {
-    padding: 20px 7% 10%;
-    text-align: center;
-    background-color: #3b5998;
+	padding: 20px 7% 10%;
+	text-align: center;
+	background-color: #3b5998;
 }
-
-
-/* ///////////*/
-
-  
-  .chat-field {
-	list-style-type: none;
-	margin: 0;
-	padding: 10px;
-  }
-    
-  .message img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 5px;
-  }
-  
-  .square {
-	display: inline-block;
-	border: 1px solid black;
-	padding: 5px;
-	border-radius: 5px;
-  }
-  
-  .square.self {
-	background-color: lightblue;
-  }
-  
-  .square.other {
-	background-color: White;
-  }

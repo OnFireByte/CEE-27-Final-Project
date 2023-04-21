@@ -10,7 +10,7 @@ const messageList = [
     {
         userId: "1",
         fname: "Neo",
-        imageProfile: "https://via.placeholder.com/50",
+        imageProfile: "https://scontent.fbkk22-4.fna.fbcdn.net/v/t39.30808-6/315982233_2209647319214449_3417131465598011782_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFVEK9R6K9ijG3YcQzqWYn9aVa_1qnKR2lpVr_WqcpHaSQvVLc_Sbr21FQ7OhAsRw0AQaJX3RbN1n9HJIYkS1w8&_nc_ohc=xUlzjVA5iTQAX9GUHxa&_nc_zt=23&_nc_ht=scontent.fbkk22-4.fna&oh=00_AfBTYa_MkcgnQwE7fthLsIVwrq6MXoxdr_gysGM-IHKx5A&oe=64466E8A",
         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in ligula id dolor dictum elementum a quis lacus. Nunc et odio risus. Proin a tincidunt felis, at vehicula nunc.",
         imageMessage: null,
         time: "10:30 AM",
@@ -92,9 +92,8 @@ function renderChatList(list) {
                 <img src="${image}" alt="${name}">
                 <div class="about">
                     <div class="name">${name}</div>
-                    <div class="last-message"><p>${lastMessage.fname} : ${lastMessage.message.substring(0, 20)}${lastMessage.message.length > 20 ? "..." : ""}</p></div>
+                    <div class="last-message"><p>${lastMessage.fname} : ${lastMessage.message.substring(0, 20)}${lastMessage.message.length > 20 ? "..." : ""}  ${lastMessage.time}</p></div>
                 </div>
-                <span class="time">${lastMessage.time}</span>
             `;
         }
         else{
@@ -108,20 +107,28 @@ function renderChatList(list) {
             `;
         }
         li.addEventListener("click", () => {
-            // TODO
-            
+            // getMessageList(userId, courseId)
+            // for(message of messageList){
+            //     renderMessage(message);
+            // }
         });
         chatList.appendChild(li);
     });
 }
   
-const chatField= document.querySelector(".chat-field");
+const chatField = document.querySelector(".chat-field");
 function renderMessage(message) {
     const li = document.createElement("li");
     li.classList.add("message", message.userId == user.userId ? "self" : "other");
     const content = message.type === "image" ? "image" : message.message;
     li.innerHTML = `
-        <div class="square ${message.userId == user.userId ? "self" : "other"}">${content}</div>
+        <div class="chat-body ${message.userId == user.userId ? "self" : "other"}" >
+            <h6>${message.fname}</h6>
+            <div style="display: flex; align-items: center;">
+                <img src="${message.imageProfile}" alt="User" style="display: inline-block;">
+                <div class="square ${message.userId == user.userId ? 'self' : 'other'}" style="display: inline-block;">${content}</div>
+            </div>
+        </div>
     `;
     console.log(message.userId, user.userId);
     if (message.type === "image") {
