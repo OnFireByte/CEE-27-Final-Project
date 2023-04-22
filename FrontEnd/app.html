@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>MyCourseVill</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="image/favicon.ico">
-        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
-    </head>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyCourseVill</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="image/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <div id="Login">
+    <header>
+      <h1>My Course Ville Chat</h1>
+    </header>
+    <div style="text-align: center">
+      <button class="button" onclick="return show('Content','Login');">
+        Login
+      </button>
+    </div>
+  </div>
+  <div id="Content" style="display: none">
     <body>
-        <header>
-            <h1>My Course Ville Chat</h1>
-        </header>
-        <div class="container">
-            <div class="chat-list">
-                <ul>
-                </ul>
-            </div>
-            <div class="chat-window">
-                <div class="chat-header"> </div>
-                <div class="chat-body">
-                    <ul class="chat-field">
-                    </ul>
-                </div>
-            </div>
+      <header>
+        <h1>My Course Ville Chat</h1>
+      </header>
+      <div class="container">
+        <div class="chat-list">
+          <ul></ul>
         </div>
-        <div class="chat-footer">
-            <input type="text" placeholder="Type your message">
-            <button>Send</button>
+        <div class="chat-window">
+          <div class="chat-header"></div>
+          <div class="chat-body">
+            <ul class="chat-field"></ul>
+          </div>
         </div>
-      </body>
+      </div>
+      <div class="chat-footer">
+        <input type="text" placeholder="Type your message" />
+        <button>Send</button>
+      </div>
+    </body>
 
-      <footer id="footer" class="white-section">
-        <p>© Com Eng Ess Project.</p>
-      </footer>
+    <footer id="footer" class="white-section">
+      <p>© Com Eng Ess Project.</p>
+    </footer>
+  </div>
 
-      <script src="script.js"></script>
+  <script src="script.js"></script>
 </html>
