@@ -104,6 +104,6 @@ export const getCourses = async (req, res) => {
 
 export const logout = (req, res) => {
     req.session.destroy();
-    res.redirect(`http://${process.env.frontendIPAddress}/login.html`);
+    res.redirect(`http://${process.env.frontendIPAddress}/index.html`);
     res.end();
 };
