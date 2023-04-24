@@ -50,7 +50,7 @@ export const accessToken = (req, res) => {
                 console.log(req.session);
                 if (token) {
                     res.writeHead(302, {
-                        Location: `http://${process.env.frontendIPAddress}/index.html`,
+                        Location: `http://${process.env.frontendIPAddress}/frontend/index.html`,
                     });
                     res.end();
                 }
@@ -104,6 +104,6 @@ export const getCourses = async (req, res) => {
 
 export const logout = (req, res) => {
     req.session.destroy();
-    res.redirect(`http://${process.env.frontendIPAddress}/index.html`);
+    res.redirect(`http://${process.env.frontendIPAddress}/frontend/index.html`);
     res.end();
 };

@@ -1,87 +1,66 @@
-// getProfileUser(userId)
-const user = {
-    userId: "4",
-    fname: "Nasmeen",
-    image: "https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/337699838_218151764202341_7243774399398942615_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEOqiylVCSDVBVQefcyaE3XqgVg00B9XgeqBWDTQH1eBzdB3laYUtsH6tObcjmhcwgB8Wk0L3W9eQPCqJSNxUGD&_nc_ohc=4YRcdj1LvJ4AX-HQ5wz&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&oh=00_AfDFmS3v2uABjVOR_aYmBP9Qw5x2Uu99ItPXv5VAUSHj-g&oe=644768F4"
+const backendIPAddress = "127.0.0.1:3000";
+
+let currentTimeStamp = 0;
+let user;
+let course_id = "123";
+
+const authorizeApplication = () => {
+    window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
 };
 
-// getMessageList(userId, courseId) : Messages in each courses
-const messageList = [
-    {
-        userId: "1",
-        fname: "Neo",
-        imageProfile: "https://scontent.fbkk22-4.fna.fbcdn.net/v/t39.30808-6/315982233_2209647319214449_3417131465598011782_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFVEK9R6K9ijG3YcQzqWYn9aVa_1qnKR2lpVr_WqcpHaSQvVLc_Sbr21FQ7OhAsRw0AQaJX3RbN1n9HJIYkS1w8&_nc_ohc=xUlzjVA5iTQAX9GUHxa&_nc_zt=23&_nc_ht=scontent.fbkk22-4.fna&oh=00_AfBTYa_MkcgnQwE7fthLsIVwrq6MXoxdr_gysGM-IHKx5A&oe=64466E8A",
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in ligula id dolor dictum elementum a quis lacus. Nunc et odio risus. Proin a tincidunt felis, at vehicula nunc.",
-        imageMessage: null,
-        time: "10:30 AM",
-        type: "text"
-    },
-    {
-        userId: "2",
-        fname: "Byte",
-        imageProfile: "https://mpics.mgronline.com/pics/Images/565000005465502.JPEG",
-        message: "What?",
-        imageMessage: null,
-        time: "10:31 AM",
-        type: "text"
-    },
-    {
-        userId: "3",
-        fname: "Oak",
-        imageProfile: "https://www.infoquest.co.th/wp-content/uploads/2023/04/DB741F1632A8EF3F68BD431640A4B813.jpg",
-        message: "Vestibulum in ligula id dolor dictum elementum a quis lacus. Nunc et odio risus. Proin a tincidunt felis, at vehicula nunc.",
-        imageMessage: null,
-        time: "10:35 AM",
-        type: "text"
-    }
-];
-
-// getcourse(userId) : Course with the lasted chats for each course 
-const courses = [
-    {
-        courseId: "1",
-        name: "Prog Meth",
-        image: "https://www.mycourseville.com/sites/all/modules/courseville/files/thumbs/icon_eclipse_green.png",
-        state: true,
-        lastMessage: messageList[0]
-    },
-    {
-        courseId: "2",
-        name: "Com Eng Ess",
-        image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/useruploaded_course_files/2021_2/27352/course_icon/icon_cee_2022-1-16418931038922.png",
-        state: false,
-        lastMessage: messageList[1]  
-    },
-    {
-        courseId: "3",
-        name: "Gen Phys 2",
-        image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/useruploaded_course_files/2022_1/31104/course_icon/2304104-172879-16711638496707.svg",
-        state: false,
-        lastMessage: messageList[2]
-    },
-];
-
-function renderprofile(user) {
-    const profile = document.querySelector(".chat-header");
-    profile.innerHTML = "";
-    const { fname, image } = user;
-    const li = document.createElement("li");
-    li.classList.add("clearfix");
-    li.innerHTML = `
-        <img src="${image}" alt="${"Profile"}">
-        <h2>${fname}</h2?
-    `;
-    profile.appendChild(li);
-
-    li.style.display = "flex";
-    li.style.alignItems = "center";
+const logout = async () => {
+    window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
 
-function renderChatList(list) {
+const getUserProfile = async () => {
+    const options = {
+        method: "GET",
+        credentials: "include",
+    };
+    // PROFILE
+    await fetch(`http://${backendIPAddress}/courseville/me`, options)
+        .then((response) => response.json())
+        .then((data) => {
+            const profile = document.querySelector(".chat-header");
+            profile.innerHTML = "";
+            const fname = data.firstname_en;
+            const image = data.profile_pict;
+            user = {
+                user_id: data.uid,
+                name: fname,
+                img: image
+            }    
+            const li = document.createElement("li");
+            li.classList.add("clearfix");
+            li.innerHTML = `
+                <img src="${image}" alt="${"Profile"}">
+                <h2>${fname}</h2?
+            `;
+            profile.appendChild(li);
+
+            li.style.display = "flex";
+            li.style.alignItems = "center";
+        })
+        .catch((error) => console.error(error));
+
+    // COURSES
+    const res = await fetch(`http://${backendIPAddress}/courseville/get_courses`, options);
+    const data = await res.json();
+    // console.log(data);
     const chatList = document.querySelector(".chat-list ul");
     chatList.innerHTML = "";
-    list.forEach(course => {
-        const { name, image, state, lastMessage } = course;
+    data.forEach(course => {
+        const { title, course_icon, cv_cid } = course;
+        const state = 0;
+        const lastMessage = {
+            userId: "1",
+            fname: "Neo",
+            imageProfile: "https://scontent.fbkk22-4.fna.fbcdn.net/v/t39.30808-6/315982233_2209647319214449_3417131465598011782_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFVEK9R6K9ijG3YcQzqWYn9aVa_1qnKR2lpVr_WqcpHaSQvVLc_Sbr21FQ7OhAsRw0AQaJX3RbN1n9HJIYkS1w8&_nc_ohc=xUlzjVA5iTQAX9GUHxa&_nc_zt=23&_nc_ht=scontent.fbkk22-4.fna&oh=00_AfBTYa_MkcgnQwE7fthLsIVwrq6MXoxdr_gysGM-IHKx5A&oe=64466E8A",
+            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in ligula id dolor dictum elementum a quis lacus. Nunc et odio risus. Proin a tincidunt felis, at vehicula nunc.",
+            imageMessage: null,
+            time: "10:30 AM",
+            type: "text"
+        };
         const li = document.createElement("li");
         li.classList.add("clearfix");
         if (state) {
@@ -89,54 +68,78 @@ function renderChatList(list) {
         }
         if(lastMessage.imageMessage == null){
             li.innerHTML = `
-                <img src="${image}" alt="${name}">
+                <img src="${course_icon}" alt="${title}">
                 <div class="about">
-                    <div class="name">${name}</div>
+                    <div class="name">${title}</div>
                     <div class="last-message"><p>${lastMessage.fname} : ${lastMessage.message.substring(0, 20)}${lastMessage.message.length > 20 ? "..." : ""}  ${lastMessage.time}</p></div>
                 </div>
             `;
         }
         else{
             li.innerHTML = `
-                <img src="${image}" alt="${name}">
+                <img src="${course_icon}" alt="${title}">
                 <div class="about">
-                    <div class="name">${name}</div>
+                    <div class="name">${title}</div>
                     <div class="last-message"><p>${lastMessage.fname} sent a photo.</p></div>
                 </div>
                 <span class="time">${time}</span>
             `;
         }
         li.addEventListener("click", () => {
-            // getMessageList(userId, courseId)
-            // for(message of messageList){
-            //     renderMessage(message);
-            // }
+            //course_id = cv_cid;
+            clearChat();
+            getChat(course_id);
         });
         chatList.appendChild(li);
     });
-}
-  
+};
+
+async function getChat (chat_id) {
+    const options = {
+        method: "GET",
+        credentials: "include",
+    };
+    const res = await fetch(`http://${backendIPAddress}/chat/${chat_id}`, options);
+    const data = await res.json();
+    console.log(data);
+    const chatbox = document.getElementById("chat");
+    // if (data.at(-1).timestamp < currentTimeStamp) {
+    //     chatbox.innerHTML = "";
+    // }
+    for (message of data) {
+        renderMessage(message)
+    }
+    currentTimeStamp = data.at(-1).timestamp;
+};
+
 const chatField = document.querySelector(".chat-field");
 function renderMessage(message) {
     const li = document.createElement("li");
-    li.classList.add("message", message.userId == user.userId ? "self" : "other");
-    const content = message.type === "image" ? "image" : message.message;
+    li.classList.add("message", message.user_id == user.user_id ? "self" : "other");
+    //const content = message.type === "image" ? "image" : message.message;
     li.innerHTML = `
-        <div class="chat-body ${message.userId == user.userId ? "self" : "other"}" >
-            <h6>${message.fname}</h6>
+        <div class="chat-body ${message.user_id == user.user_id ? "self" : "other"}" >
+            <h6>${message.name}</h6>
             <div style="display: flex; align-items: center;">
-                <img src="${message.imageProfile}" alt="User" style="display: inline-block;">
-                <div class="square ${message.userId == user.userId ? 'self' : 'other'}" style="display: inline-block;">${content}</div>
+                <img src="${message.img}" alt="User" style="display: inline-block;">
+                <div class="square ${message.user_id == user.user_id ? 'self' : 'other'}" style="display: inline-block;">${message.message}</div>
             </div>
         </div>
     `;
-    console.log(message.userId, user.userId);
-    if (message.type === "image") {
-        const img = document.createElement("img");
-        img.src = message.content;
-        li.appendChild(img);
-    }
+    //console.log(message.userId, user.userId);
+    // if (message.type === "image") {
+    //     const img = document.createElement("img");
+    //     img.src = message.content;
+    //     li.appendChild(img);
+    // }
     chatField.appendChild(li);    
+}
+
+function clearChat(){
+    const ul = document.querySelector('ul.chat-field');
+    while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+    }
 }
 
 const form = document.querySelector(".chat-footer");
@@ -144,25 +147,28 @@ const input = form.querySelector("input");
 const button = form.querySelector("button");
 button.addEventListener("click", (event) => {
     event.preventDefault();
+
     const content = input.value;
     if (content.trim() !== "") {
-        // postMessage(userId ,courseId ,message)
-        const message = {
-            userId: user.userId,
-            fname: user.fname,
-            imageProfile: user.image,
-            message: content,
-            imageMessage: null,
-            time: "",
-            type: "text"
-        }
-        renderMessage(message);
+        const itemData = {
+            message: input.value,
+            chat_id: course_id,
+        };
+        const options = {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(itemData),
+        };
+        fetch(`http://${backendIPAddress}/chat/`, options);
+        renderMessage({
+            user_id: user.user_id,
+            name: user.name,
+            img: user.img,
+            message: input.value
+        });
         input.value = "";
     }
 });
-
-renderprofile(user);
-renderChatList(courses);
-for(message of messageList){
-    renderMessage(message);
-}

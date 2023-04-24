@@ -33,6 +33,14 @@ header {
 	height: 80px;
 }
 
+.login-logout-button {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+	cursor: pointer;
+}
+
 /* ----------- Chat List ----------- */
 .chat-list {
 	flex: 1;
