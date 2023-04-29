@@ -9,12 +9,13 @@ header {
 	color: white;
 	padding: 20px;
 	text-align: center;
+	display: flex;
 }
 
 .container {
 	display: flex;
 	flex-direction: row;
-	height: 100vh;
+	height: 25.6rem;
 }
 
 /* ----------- Profile Header ----------- */
@@ -24,6 +25,7 @@ header {
 	display: flex;
 	align-items: center;
 	padding: 20px;
+	display: flex;
 }
 
 .chat-header img {
@@ -42,6 +44,18 @@ header {
 }
 
 /* ----------- Chat List ----------- */
+.img {
+	/* border-radius: 50%;
+	margin-right: 10px; */
+	width: 17rem;
+	height: 5rem;
+	display: flex;
+	background-color: #3b5998;
+	color: white;
+	padding: 15px;
+	text-align: center;
+}
+
 .chat-list {
 	flex: 1;
 	width: 400px;
@@ -94,7 +108,7 @@ header {
 
 
 /* ----------- Chat Body ----------- */
-.chat-window {
+#chat-window {
 	flex: 3;
 	display: flex;
 	flex-direction: column;
@@ -181,7 +195,8 @@ header {
 
 /* ----------- Footer ----------- */
 #footer {
-	padding: 20px 7% 10%;
 	text-align: center;
 	background-color: #3b5998;
+	height: 2rem;
+	padding: 0.5rem;
 }

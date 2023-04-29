@@ -14,9 +14,8 @@
     </head>
  
     <body onload=getUserProfile();>
-        <div>
         <header>
-            <h1>My Course Ville Chat</h1>
+            <img src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" alt="Description of the image" class="img">
             <div class="login-logout-button">
                 <button class="login-button" onclick=authorizeApplication()>
                     Login
@@ -26,25 +25,36 @@
                 </button>
             </div>
         </header>
+       
         <div class="container">
             <div class="chat-list">
                 <ul></ul>
             </div>
-            <div class="chat-window">
-            <div class="chat-header"></div>
-            <div class="chat-body">
-                <ul class="chat-field"></ul>
-            </div>
+            <div id="chat-window">
+                <div class="chat-header"></div>
+                <div class="chat-body">
+                    <ul class="chat-field"></ul>
+                </div>
             </div>
         </div>
         <div class="chat-footer">
-            <input type="text" placeholder="Type your message" />
-            <button>Send</button>
+            <input type="text" placeholder="Type your message" id="message-input"/>
+            <button id="send-button">Send</button>
         </div>
-        </div>
+        <script>
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            
+            messageInput.addEventListener('keydown', event => {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                sendButton.click();
+              }
+            });
+        </script>
 
         <footer id="footer" class="white-section">
-        <p>© Com Eng Ess Project.</p>
+            <p>© Com Eng Ess Project.</p>
         </footer>
     </body>
 
