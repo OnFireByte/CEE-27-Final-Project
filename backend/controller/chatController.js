@@ -1,13 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import {
-    PutCommand,
-    DeleteCommand,
-    ScanCommand,
-    BatchWriteCommand,
-    QueryCommand,
-} from "@aws-sdk/lib-dynamodb";
+import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 
 const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
 
@@ -65,12 +59,11 @@ export const addMessage = async (req, res) => {
         name: `${user.firstname_en} ${user.lastname_en}`,
         user_id: user.uid,
         img: user.profile_pict,
-        chat_id: req.body.chat_id,
+        chat_id: `${req.body.chat_id}`,
         message: req.body.message,
         timestamp: created_date,
     };
 
-    // You should change the response below.
     try {
         await docClient.send(new PutCommand({ TableName: "chat", Item: item }));
         res.send(item);
