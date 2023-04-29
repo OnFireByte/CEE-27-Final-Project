@@ -83,9 +83,8 @@ header {
 	font-size: 1rem;
 }
 
-.chat-list ul li.active p {
-	color: #1a1aff;
-	font-weight: bold;
+.chat-list ul li.active {
+	background-color: #9a9999;
 }
 
 .chat-list ul li p {

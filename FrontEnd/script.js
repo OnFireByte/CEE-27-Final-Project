@@ -65,29 +65,33 @@ const getUserProfile = async () => {
     data.forEach(course => {
         const { title, course_icon, cv_cid } = course;
         const li = document.createElement("li");
-        li.classList.add("clearfix");
+        li.classList.add("clearfix");  
+        li.setAttribute("id", cv_cid);    
         li.innerHTML = `
             <img src="${course_icon}" alt="${title}">
             <div class="about">
                 <div class="name">${title}</div>
             </div>
         `;
-
-        if(data[0].length != 0){
-            course_id = data[0].cv_cid;
-            getChat(course_id);
-            scrollToBottom('#chat-window');
-        }
-
         li.addEventListener("click", async () => {
+            document.getElementById(course_id).classList.remove("active");
+
             currentTimeStamp = 0;
             course_id = cv_cid;
             clearChat();
+            document.getElementById(course_id).classList.add("active");
             await getChat(course_id);
             scrollToBottom('#chat-window');
         });
         chatList.appendChild(li);
     });
+
+    if(data[0].length != 0){
+        course_id = data[0].cv_cid;
+        getChat(course_id);
+        scrollToBottom('#chat-window');
+        document.getElementById(data[0].cv_cid).classList.add("active");
+    }
 };
 
 async function getChat(chat_id) {
