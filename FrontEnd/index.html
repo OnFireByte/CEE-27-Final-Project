@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>MyCourseVill</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="image/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body onload="getUserProfile();">
+<head>
+  <meta charset="UTF-8" />
+  <title>MyCourseVill</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="image/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet" />
+</head>
+
+<body onload="getUserProfile();">
+  <div class="wrapper">
     <header>
-      <img
-        style="display: flex; justify-content: flex-start"
-        src="logo.png"
-        width="200"
-        height="80"
-        alt="My Course Ville Chat"
-      />
+      <img style="display: flex; justify-content: flex-start" src="logo.png" width="200" height="80"
+        alt="My Course Ville Chat" />
       <div class="login-logout-button">
+        <div class="user-info" id="user-info">
+        </div>
         <button class="login-button" onclick="authorizeApplication()">
           Login
         </button>
@@ -34,33 +30,36 @@
       <div class="chat-list">
         <ul></ul>
       </div>
-      <div id="chat-window">
-        <div class="chat-header"></div>
-        <div class="chat-body">
-          <ul class="chat-field"></ul>
+      <div class="chat-right-side">
+        <div id="chat-window">
+          <div class="chat-header"></div>
+          <div class="chat-body">
+            <ul class="chat-field"></ul>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" placeholder="Type your message" id="message-input" />
+          <button id="send-button">Send</button>
         </div>
       </div>
     </div>
-    <div class="chat-footer">
-      <input type="text" placeholder="Type your message" id="message-input" />
-      <button id="send-button">Send</button>
-    </div>
-    <script>
-      const messageInput = document.getElementById("message-input");
-      const sendButton = document.getElementById("send-button");
-
-      messageInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          sendButton.click();
-        }
-      });
-    </script>
 
     <footer id="footer" class="white-section">
       <p>© Com Eng Ess Project.</p>
     </footer>
-  </body>
+  </div>
+</body>
+<script>
+  const messageInput = document.getElementById("message-input");
+  const sendButton = document.getElementById("send-button");
 
-  <script src="script.js"></script>
+  messageInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendButton.click();
+    }
+  });
+</script>
+<script src="script.js"></script>
+
 </html>
