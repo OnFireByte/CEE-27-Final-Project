@@ -150,8 +150,7 @@ body {
 
 .message-body {
     background-color: #f2f2f2;
-    padding: 20px;
-    height: 70px;
+    padding: 5px;
 }
 
 .chat-body ul {

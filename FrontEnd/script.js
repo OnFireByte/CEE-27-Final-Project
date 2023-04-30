@@ -9,8 +9,10 @@ let user = {
 let course_id;
 
 setInterval(function () {
-    getChat(course_id);
-}, 1000);
+    if (user.user_id != undefined || user.user_id != "") {
+        getChat(course_id);
+    }
+}, 500);
 
 const authorizeApplication = () => {
     window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
@@ -121,6 +123,8 @@ async function getChat(chat_id) {
         options
     );
     const temp = await res.json();
+
+    if (course_id != chat_id) return;
 
     const data = temp.filter((x) => x.timestamp > currentTimeStamp);
     const chatWindow = document.querySelector(".chat-body");
