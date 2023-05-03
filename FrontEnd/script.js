@@ -126,7 +126,10 @@ async function getChat(chat_id) {
 
     if (course_id != chat_id) return;
 
-    const data = temp.filter((x) => x.timestamp > currentTimeStamp);
+    const data = temp
+        .filter((x) => x.timestamp > currentTimeStamp)
+        .filter((x) => x.user_id != user.user_id || currentTimeStamp == 0);
+    console.log(data);
     const chatWindow = document.querySelector(".chat-body");
     const isBottom =
         Math.abs(chatWindow.scrollHeight - chatWindow.scrollTop - chatWindow.clientHeight) < 1;
@@ -184,7 +187,13 @@ button.addEventListener("click", async (event) => {
             body: JSON.stringify(itemData),
         };
         input.value = "";
-        await fetch(`http://${backendIPAddress}/chat/`, options);
+        renderMessage({
+            user_id: user.user_id,
+            name: user.name,
+            img: user.img,
+            message: itemData.message,
+        });
         scrollToBottom(".chat-body");
+        await fetch(`http://${backendIPAddress}/chat/`, options);
     }
 });
